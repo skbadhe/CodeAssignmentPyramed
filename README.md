@@ -1,7 +1,5 @@
 # CodeAssignmentPyramed
 
-Code Assignment for Pyramed Telemedicine
-
 SpringBoot Backend  + MySql DB
 
 Rest Endpoints: 
@@ -73,3 +71,5 @@ Query to create tables-
 Create user in MySQL with username = "user" and password = "password".
 
 Method/Function Names are self explanatory.
+
+Note- Import as gradle project.
