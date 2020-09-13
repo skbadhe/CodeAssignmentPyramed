@@ -41,37 +41,37 @@ public class UserMethods {
 	public void followUser(String followUserName) {
 		User toFollowUser = getUser(followUserName);
 		User followerUser = ChitterController.LoggedInUser;
-		if (toFollowUser.getFollowersID()==null) {
+		if (toFollowUser.getFollowersID() == null) {
 			String addToDB = followerUser.getUserName() + ",";
 			toFollowUser.setFollowersID(addToDB);
 		} else {
 			String addToDB = toFollowUser.getFollowersID();
-			int flag=0;
-			String[] FollowersList = addToDB.split(",",-1);
-			for(String follower: FollowersList) {
-				if(followerUser.getUserName().equals(follower)) {
-					flag=1;
+			int flag = 0;
+			String[] FollowersList = addToDB.split(",", -1);
+			for (String follower : FollowersList) {
+				if (followerUser.getUserName().equals(follower)) {
+					flag = 1;
 				}
 			}
-			if(flag==0) {
+			if (flag == 0) {
 				addToDB += followerUser.getUserName() + ",";
 				toFollowUser.setFollowersID(addToDB);
 			}
 		}
 		userRepository.save(toFollowUser);
-		if (followerUser.getFollowingIDs()==null) {
+		if (followerUser.getFollowingIDs() == null) {
 			String addToDB = followUserName + ",";
 			followerUser.setFollowingIDs(addToDB);
 		} else {
 			String addToDB = followerUser.getFollowingIDs();
-			int flag=0;
+			int flag = 0;
 			String[] FollowingList = addToDB.split(",", -1);
-			for(String follower:FollowingList) {
-				if(followUserName.equals(follower)) {
-					flag=1;
+			for (String follower : FollowingList) {
+				if (followUserName.equals(follower)) {
+					flag = 1;
 				}
 			}
-			if(flag==0) {
+			if (flag == 0) {
 				addToDB += followUserName + ",";
 				followerUser.setFollowingIDs(addToDB);
 			}

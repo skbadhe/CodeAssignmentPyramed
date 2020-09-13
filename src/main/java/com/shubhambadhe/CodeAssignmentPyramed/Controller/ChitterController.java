@@ -27,15 +27,15 @@ import com.shubhambadhe.CodeAssignmentPyramed.User.UserMethods;
  */
 @RestController
 public class ChitterController {
-	
+
 	public static User LoggedInUser;
-	
+
 	@Autowired
 	private UserMethods userService;
-	
+
 	@Autowired
 	private LoginService loginService;
-	
+
 	@Autowired
 	private ChitService chitservice;
 
@@ -56,12 +56,12 @@ public class ChitterController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	String login(@RequestBody Login loginInfo) {
-		int check=-1;
+		int check = -1;
 		check = loginService.checkLogin(loginInfo);
-		if(check==1) {
+		if (check == 1) {
 			LoggedInUser = userService.getUser(loginInfo.getUsername());
 			return "Logged In!";
-		}else if(check==0) {
+		} else if (check == 0) {
 			return "Login Failed";
 		}
 		return "User Doesnot Exist!";
@@ -69,17 +69,17 @@ public class ChitterController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	String logout() {
-		if(LoggedInUser == null) {
+		if (LoggedInUser == null) {
 			return "Already Logged Out!";
-		}else {
-		return "Logged Out!";
+		} else {
+			return "Logged Out!";
 		}
 	}
 
 	@RequestMapping(value = "/postChit", method = RequestMethod.POST)
 	String postChit(@RequestBody Chit chit) {
 		String response = "Log in first";
-		if(!(LoggedInUser==null)) {
+		if (!(LoggedInUser == null)) {
 			chit.setUsername(LoggedInUser.getUserName());
 			Time time = new Time(0);
 			chit.setTime(time);
@@ -93,7 +93,7 @@ public class ChitterController {
 	String followUser(@RequestBody User user) {
 		String response = "Log in first";
 		String followUserName = user.getUserName();
-		if(!(LoggedInUser==null)) {
+		if (!(LoggedInUser == null)) {
 			userService.followUser(followUserName);
 			response = "followed";
 		}
@@ -103,9 +103,10 @@ public class ChitterController {
 	@RequestMapping(value = "/getChit", method = RequestMethod.GET)
 	HashMap<String, List<Chit>> GetFollowedChits() {
 		HashMap<String, List<Chit>> response = new HashMap<>();
-		if(!(LoggedInUser==null)) {
+		if (!(LoggedInUser == null)) {
 			HashMap<String, List<Chit>> all_chits = chitservice.getChits(LoggedInUser.getUserName());
-			response = all_chits;;
+			response = all_chits;
+			;
 		}
 		return response;
 	}

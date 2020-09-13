@@ -13,6 +13,6 @@ import com.shubhambadhe.CodeAssignmentPyramed.Login.Login;
  *
  */
 @Repository
-public interface LoginRepository extends CrudRepository<Login, String>{
+public interface LoginRepository extends CrudRepository<Login, String> {
 
 }

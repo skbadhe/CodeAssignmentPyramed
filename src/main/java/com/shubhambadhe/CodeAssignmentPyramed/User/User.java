@@ -18,21 +18,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid")
 	protected int userID;
-	
+
 	@Column(name = "username")
 	protected String userName;
-	
+
 	@Column(name = "following")
 	protected String followingIDs;
-	
+
 	@Column(name = "followers")
 	protected String followersID;
-
 
 	public int getUserID() {
 		return userID;

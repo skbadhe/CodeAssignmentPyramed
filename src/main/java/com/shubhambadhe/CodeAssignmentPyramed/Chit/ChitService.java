@@ -20,24 +20,24 @@ import com.shubhambadhe.CodeAssignmentPyramed.User.UserMethods;
  */
 @Service
 public class ChitService {
-	
+
 	@Autowired
 	ChitRepository chitRepository;
 
 	@Autowired
 	UserMethods userService;
-	
+
 	public void postChit(Chit chit) {
 		chitRepository.save(chit);
 	}
 
-	public HashMap<String,List<Chit>> getChits(String userName) {
-		HashMap<String,List<Chit>> chitMap = new HashMap<>();
+	public HashMap<String, List<Chit>> getChits(String userName) {
+		HashMap<String, List<Chit>> chitMap = new HashMap<>();
 		User user = userService.getUser(userName);
 		String following = user.getFollowingIDs();
-		if(following!=null) {
+		if (following != null) {
 			String[] followingList = following.split(",", -1);
-			for(String followingUser:followingList) {
+			for (String followingUser : followingList) {
 				List<Chit> chits = getChitsByUser(followingUser);
 				chitMap.put(followingUser, chits);
 			}
@@ -48,8 +48,8 @@ public class ChitService {
 	private List<Chit> getChitsByUser(String followingUser) {
 		List<Chit> ListChits = (List<Chit>) chitRepository.findAll();
 		List<Chit> chits = new ArrayList<>();
-		for(Chit chit:ListChits) {
-			if(chit.getUsername().equals(followingUser)){
+		for (Chit chit : ListChits) {
+			if (chit.getUsername().equals(followingUser)) {
 				chits.add(chit);
 			}
 		}
