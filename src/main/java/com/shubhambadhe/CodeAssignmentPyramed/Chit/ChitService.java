@@ -31,7 +31,7 @@ public class ChitService {
 		chitRepository.save(chit);
 	}
 
-	public HashMap<String, List<Chit>> getChits(String userName) {
+	public HashMap<String, List<Chit>> getChitsByFollowers(String userName) {
 		HashMap<String, List<Chit>> chitMap = new HashMap<>();
 		User user = userService.getUser(userName);
 		String following = user.getFollowingIDs();
@@ -45,7 +45,7 @@ public class ChitService {
 		return chitMap;
 	}
 
-	private List<Chit> getChitsByUser(String followingUser) {
+	public List<Chit> getChitsByUser(String followingUser) {
 		List<Chit> ListChits = (List<Chit>) chitRepository.findAll();
 		List<Chit> chits = new ArrayList<>();
 		for (Chit chit : ListChits) {

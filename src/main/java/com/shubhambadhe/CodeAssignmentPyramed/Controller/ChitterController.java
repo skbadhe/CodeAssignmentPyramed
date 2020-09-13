@@ -4,6 +4,7 @@
 package com.shubhambadhe.CodeAssignmentPyramed.Controller;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,8 +80,8 @@ public class ChitterController {
 	@RequestMapping(value = "/postChit", method = RequestMethod.POST)
 	String postChit(@RequestBody Chit chit) {
 		String response = "Log in first";
-		if (!(LoggedInUser == null)) {
-			if(chit.getChit().length()>150) {
+		if (LoggedInUser != null) {
+			if (chit.getChit().length() > 150) {
 				return "Size Limit Exceeded! Chit has 150 char limit!";
 			}
 			chit.setUsername(LoggedInUser.getUserName());
@@ -96,20 +97,29 @@ public class ChitterController {
 	String followUser(@RequestBody User user) {
 		String response = "Log in first";
 		String followUserName = user.getUserName();
-		if (!(LoggedInUser == null)) {
+		if (LoggedInUser != null) {
 			userService.followUser(followUserName);
 			response = "followed";
 		}
 		return response;
 	}
 
-	@RequestMapping(value = "/getChit", method = RequestMethod.GET)
+	@RequestMapping(value = "/getChitByFollowers", method = RequestMethod.GET)
 	HashMap<String, List<Chit>> GetFollowedChits() {
 		HashMap<String, List<Chit>> response = new HashMap<>();
-		if (!(LoggedInUser == null)) {
-			HashMap<String, List<Chit>> all_chits = chitservice.getChits(LoggedInUser.getUserName());
+		if (LoggedInUser != null) {
+			HashMap<String, List<Chit>> all_chits = chitservice.getChitsByFollowers(LoggedInUser.getUserName());
 			response = all_chits;
-			;
+		}
+		return response;
+	}
+
+	@RequestMapping(value = "/getMyChits", method = RequestMethod.GET)
+	List<Chit> GetMyChits() {
+		List<Chit> response = new ArrayList<>();
+		if (LoggedInUser != null) {
+			List<Chit> myChits = chitservice.getChitsByUser(LoggedInUser.getUserName());
+			response = myChits;
 		}
 		return response;
 	}
