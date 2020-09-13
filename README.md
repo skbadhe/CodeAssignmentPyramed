@@ -10,7 +10,7 @@ Rest Endpoints:
 3. "/logout" - GET Method
 4. "/postChit" - POST Method
 5. "/follow" - POST Method
-6. "/getChit" - GET Method - Return -> HashMap<User,Chits By Users>
+6. "/getChitByFollowers" - GET Method - Return -> HashMap<User,Chits By Users>
 7. "/getMyChits" - GET Method - Return -> List<String>
 
 Sample Post Body :
