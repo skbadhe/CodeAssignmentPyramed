@@ -5,12 +5,12 @@ Code Assignment for Pyramed Telemedicine
 SpringBoot Backend  + MySql DB
 
 Rest Endpoints: 
-	1. "/register" - POST Method
-	2. "/login" - POST Method
-	3. "/logout" - GET Method
-	4. "/postChit" - POST Method
-	5. "/follow" - POST Method
-	6. "/getChit" - GET Method - Return -> HashMap<User,Chits By Users>
+1. "/register" - POST Method
+2. "/login" - POST Method
+3. "/logout" - GET Method
+4. "/postChit" - POST Method
+5. "/follow" - POST Method
+6. "/getChit" - GET Method - Return -> HashMap<User,Chits By Users>
 
 Sample Post Body :
 Postman - POST - body - raw - JSON:
@@ -42,10 +42,10 @@ Postman - POST - body - raw - JSON:
 MySQL to be run at localhost:3306
 DBName - "chitter"
 
-Tables - 
-	1.users - To store user related data
-	2.userpass - to store user's login/password
-	3.chits - to store chits by users
+Tables-
+1. users - To store user related data
+2. userpass - to store user's login/password
+3. chits - to store chits by users
 
 Query to create tables-
 
