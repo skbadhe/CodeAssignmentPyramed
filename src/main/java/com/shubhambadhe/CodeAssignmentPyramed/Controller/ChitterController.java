@@ -80,6 +80,9 @@ public class ChitterController {
 	String postChit(@RequestBody Chit chit) {
 		String response = "Log in first";
 		if (!(LoggedInUser == null)) {
+			if(chit.getChit().length()>150) {
+				return "Size Limit Exceeded! Chit has 150 char limit!";
+			}
 			chit.setUsername(LoggedInUser.getUserName());
 			Time time = new Time(0);
 			chit.setTime(time);
